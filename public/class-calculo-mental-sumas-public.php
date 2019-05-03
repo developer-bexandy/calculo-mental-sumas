@@ -73,8 +73,18 @@ class Calculo_Mental_Sumas_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/calculo-mental-sumas-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name.'-public-css', plugin_dir_url( __FILE__ ) . 'css/calculo-mental-sumas-public.css', array(), $this->version, 'all' );
 
+		wp_enqueue_style( 'bootstrap_css', 
+  					'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css', 
+  					array(), 
+  					'4.1.3'
+  					); 
+		wp_enqueue_style( 'bootstrap-slider_css', 
+  					'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/css/bootstrap-slider.min.css',
+  					array('bootstrap_css'), 
+  					'10.6.1'
+  					); 
 	}
 
 	/**
@@ -95,9 +105,123 @@ class Calculo_Mental_Sumas_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		
+		wp_register_script( $this->plugin_name.'-public-js', plugin_dir_url( __FILE__ ) . 'js/calculo-mental-sumas-public.js', array( 'jquery' ), $this->version, false);
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/calculo-mental-sumas-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name.'-public-js');
+  
+		$userCapabilities = array();
+		$pluginUrl = plugin_dir_url( __FILE__ );
 
+		if (is_user_logged_in()) {
+			array_push($userCapabilities, 'read');
+			if (current_user_can( 'jugar_entrenamiento' )) {
+				array_push($userCapabilities, 'jugar_entrenamiento');
+			}
+			if (current_user_can( 'ver_puntos_otros' )) {
+				array_push($userCapabilities, 'ver_puntos_otros');
+			}
+			if (current_user_can( 'ver_puntos_propios' )) {
+				array_push($userCapabilities, 'ver_puntos_propios');
+			}
+			
+		} else {
+			array_push($userCapabilities, 'anonimo');
+		}
+		
+		$title_nonce = wp_create_nonce('calculo_mental_sumas_public');
+
+		
+		wp_localize_script($this->plugin_name.'-public-js', 'calculo_mental_sumas_ajax_obj', array(
+	        'ajax_url' => admin_url( 'admin-ajax.php' ),
+	        'user_capabilities'    => $userCapabilities,
+	        'plugin_url' => $pluginUrl, 
+	        'nonce'    => $title_nonce
+
+	    ));
+
+	    wp_enqueue_script( 'popper_js', 
+  					'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', 
+  					array(), 
+  					'1.14.3', 
+  					true); 
+	    wp_enqueue_script( 'bootstrap_js', 
+  					'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js', 
+  					array('jquery','popper_js'), 
+  					'4.1.3', 
+  					true); 
+	    wp_enqueue_script( 'bootstrap-slider_js', 
+  					'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.min.js', 
+  					array('jquery','bootstrap_js'), 
+  					'10.6.1', 
+  					true); 
+
+	    
+	    wp_enqueue_script( 'tweenmax_js', 
+  					'https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js', 
+  					array(), 
+  					'2.1.2', 
+  					true);
+
+	}
+
+	/**
+	 * Definir el shortcode para mostrar el formulario.
+	 *
+	 **/
+	public function shortcode_calculo_mental_sumas($atts, $content = null){
+
+		$template_file = dirname(__FILE__) .'/partials/calculo-mental-sumas-public-display.php';
+		$html = file_get_contents($template_file);
+		ob_start();
+		?>
+		<?php echo $html;?>
+	    <?php
+	    $data = ob_get_clean();
+	    return $data;
+	}
+
+	/**
+	 * Displays Error Notices
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 **/
+	public function DisplayError($message = "Aww!, there was an error.") {
+		wp_send_json_error(
+		    array( 
+            		'message' => $message
+            	)
+		  );
+	}
+
+	/**
+	 * Displays Success Notices
+	 *
+	 * @since    1.0.0
+	 * @since    1.0.0
+	 **/
+	public function DisplaySuccess($message ) { 
+		wp_send_json_success(
+			    array( 
+            		'message' => $message            	)
+			 );
+	}
+
+	/**
+	 * Definir el shortcode para mostrar el formulario.
+	 *
+	 **/
+	public function loadJuegoEntrenamiento($atts, $content = null){
+
+		$template_file = dirname(__FILE__) .'/partials/juego-entrenamiento.php';
+		$html = file_get_contents($template_file);
+		ob_start();
+		?>
+		<?php echo $html;?>
+	    <?php
+	    $data = ob_get_clean();
+	    self::DisplaySuccess($data);
 	}
 
 }

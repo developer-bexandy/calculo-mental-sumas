@@ -173,6 +173,12 @@ class Calculo_Mental_Sumas {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+		// Crear shortcode del formulario de presupuesto
+		$this->loader->add_shortcode( 'calculo_mental_sumas', $plugin_public, 'shortcode_calculo_mental_sumas' );
+
+		// Añadir funciones listener para llamado ajax con action = 'alarm_estimate_form_submit'
+		$this->loader->add_action( 'wp_ajax_get_juego_entrenamiento', $plugin_public, 'loadJuegoEntrenamiento' );
+		$this->loader->add_action( 'wp_ajax_nopriv_get_juego_entrenamiento', $plugin_public, 'loadJuegoEntrenamiento' );
 	}
 
 	/**

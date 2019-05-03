@@ -30,6 +30,25 @@ class Calculo_Mental_Sumas_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
+		$role =& get_role( 'administrator' );
+
+		if (!empty($role)) {
+			$role->remove_cap('jugar_entrenamiento');
+			$role->remove_cap('ver_puntos_otros');
+			$role->remove_cap('ver_puntos_propios');
+		}
+
+		$roles_to_delete = array(
+			'jugador_activo',
+			'jugador_suspendido'
+		);
+
+		foreach ($roles_to_delete as $role) {
+			$users = get_users( array('role' => $role) );
+			if (count($users) <= 0) {
+				remove_role( $role );
+			}
+		}
 
 	}
 

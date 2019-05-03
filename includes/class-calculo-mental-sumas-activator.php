@@ -30,6 +30,33 @@ class Calculo_Mental_Sumas_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
+		$role =& get_role( 'administrator' );
+
+		if (!empty($role)) {
+			$role->add_cap('jugar_entrenamiento');
+			$role->add_cap('ver_puntos_otros');
+			$role->add_cap('ver_puntos_propios');
+		}
+
+		$result = add_role(
+		    'jugador_activo',
+		    __( 'Jugador Activo' ),
+		    array(
+		        'jugar_entrenamiento' => true,  // true allows this capability
+		        'ver_puntos_otros' => true,
+		        'ver_puntos_propios' => true // Use false to explicitly deny
+		    )
+		);
+
+		$result = add_role(
+		    'jugador_suspendido',
+		    __( 'Jugador Suspendido' ),
+		    array(
+
+		        'ver_puntos_propios' => true // Use false to explicitly deny
+		    )
+		);
+
 
 	}
 

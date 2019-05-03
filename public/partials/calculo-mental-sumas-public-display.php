@@ -14,3 +14,6 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
+
+<div id="calculo_mental_wrapper" class="light-background" ></div>
+<div id="log" class="log"></div>

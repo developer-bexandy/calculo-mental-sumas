@@ -1,0 +1,91 @@
+<a id="follow" href="https://twitter.com/Craig_PointC" target="_blank"><span class="fa fa-twitter"></span></a>
+
+		<svg id="projectionScreen" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200">
+    		<defs>
+  				<radialgradient id="filmGradient" cx="600" cy="450" r="340" gradientUnits="userSpaceOnUse">
+    				<stop offset="0" stop-color="#e6e6e6"/>
+    				<stop offset="0.1" stop-color="#d1d1d1"/>
+	    			<stop offset="1" stop-color="#1a1a1a"/>
+  				</radialgradient>
+  
+				<mask id="filmMask">
+					<circle class="big" cx="600" cy="450" transform="rotate(-90 600 450)" r="250" stroke="#fff" stroke-width="500" fill="none" />
+				</mask>
+  
+  				<mask id="sockMask">
+					<rect x="490" y="285.13" width="260" height="260" fill="#fff"/>
+  				</mask>
+  
+  				<mask id="textMask">
+					<rect x="213" y="585" width="774" height="130" fill="#fff"/>
+  				</mask>
+			</defs>
+  
+  			<title>Film Countdown</title>
+			<ellipse id="shadow" cx="600" cy="1080.97" rx="375" ry="13" fill="#111" opacity="0.15"/>
+
+			<g id="screenMaster">
+  				<g id="supports" transform="translate(5,0)">
+  					<rect id="centerStand" x="583.78" y="117.91" width="18.76" height="718.65" fill="#878787"/>
+					<g id="leftLeg">
+	  					<polygon id="ltLeg" points="442.91 1081.74 420.74 1082.24 586.17 796.3 602.41 805.69 442.91 1081.74" fill="#878787"/>
+	  					<path id="ltFoot" d="M447.28,1078.95a4.14,4.14,0,0,1-4.14,4.14h-21.9a4.14,4.14,0,0,1-4.14-4.14h0a4.14,4.14,0,0,1,4.14-4.14h21.9a4.14,4.14,0,0,1,4.14,4.14h0Z" fill="#f9b233"/>
+					</g>	
+					<g id="rightLeg">
+	  					<polygon id="rtLeg" points="744.04 1081.44 766.21 1081.94 600.78 796.01 584.54 805.39 744.04 1081.44" fill="#878787"/>
+	  					<path id="rtFoot" d="M769.12,1078.95a4.14,4.14,0,0,1-4.14,4.14h-21.9a4.14,4.14,0,0,1-4.14-4.14h0a4.14,4.14,0,0,1,4.14-4.14H765a4.14,4.14,0,0,1,4.14,4.14h0Z" fill="#f9b233"/>
+					</g>
+  				</g>
+
+				<rect id="screen" x="213.04" y="168.42" width="774.93" height="552.7" fill="#fff"/>
+				<rect id="centerShadowBottom" x="589.08" y="744.16" width="18.16" height="18.61" fill="#575756"/> 
+
+				<g id="screenBars">
+  					<g id="screenTop">
+						<rect id="topCore" x="168.78" y="154.36" width="863.43" height="17.97" rx="4" ry="4" fill="#c6c6c6"/>
+						<rect id="topBar" x="180.57" y="148.21" width="839.87" height="30.3" rx="8" ry="8" fill="#4c4c4c"/>
+						<rect id="topHighlight" x="188.62" y="166.93" width="825.31" height="6.14" fill="#fff" opacity="0.2"/>
+  					</g>
+
+				  	<g id="screenBottom">
+						<rect id="bottomCore" x="168.78" y="722.05" width="863.43" height="17.97" rx="4" ry="4" fill="#c6c6c6"/>
+						<rect id="bottomBar" x="180.57" y="715.34" width="839.87" height="34.63" rx="8" ry="8" fill="#4c4c4c"/>
+						<rect id="bottomHighlight" x="187.28" y="722.54" width="825.31" height="6.14" fill="#fff" opacity="0.2"/>
+				  	</g> 
+				</g>
+			</g>
+  
+			<g id="film" opacity="0">
+   				<rect width="700" height="500" x="250" y="200" rx="30" ry="30" opacity="0.65" fill="url(#filmGradient)"/>
+
+  				<g mask="url(#filmMask)" > 
+					<rect width="700" height="500" x="250" y="200" rx="30" ry="30" fill="url(#filmGradient)" />
+  				</g>
+  
+  				<g stroke-width="2">
+					<circle cx="600" cy="450" r="175" stroke="#111"  fill="none" />
+					<circle cx="600" cy="450" r="150" stroke="#fff" fill="none" />
+					<circle cx="600" cy="450" r="110" stroke="#fff"  fill="none" />
+					<line x1="350" y1="450" x2="850" y2="450" stroke="#111"  />
+					<line x1="600" y1="220" x2="600" y2="680" stroke="#111"  />
+ 				</g>
+ 
+				<line id="rotator" x1="600" y1="275" x2="600" y2="450" stroke="#333" stroke-width="3" />
+				<text id="counter" text-anchor="middle" x="600" y="535" font-size="250" ></text>
+			</g>
+
+			<g id="movieClip">
+  				<g id="sockWrap" mask="url(#sockMask)">  
+					<g id="sock">
+						<path d="M501,285.47c-4.57,6.53.65,31.35,7.18,55.53s20.91,38.54,24.17,78.39c3.27,39.2,3.92,44.42-7.19,67.28s-14.37,43.77,24.17,44.42,59.45-.65,98.65,5.23,52.92,7.84,74.48,4.57,26.13-10.46,17-17-47-13.72-63.37-26.79c-15.68-11.76-60.1-31.36-60.75-36.58-2-17.64-2.61-81.66.65-102.56s7.84-51,9.15-58.8,7.84-15.68-3.27-13.07-52.91,8.49-84.27,6.53S503,283.5,501,285.47Z" fill="#88ce02"/>
+						<path d="M501.07,310.24c15,5.23,35.9,5.88,55.5,5.23s48.55-2.94,67.5-9.47l-3,19.16L610.89,327s-10.55,5.49-51.05,4.84c-47.69-.65-55.45-5.81-55.45-5.81Z" opacity="0.3" />
+						<path d="M616,358s-18.95,7.19-58.8,6.53a280.23,280.23,0,0,1-40.84-1.94l-3.67-8.49-3.46-9.53c15.32,5.14,29,5.59,48.61,4.93s41.67-.25,60.61-7.44" opacity="0.3" />
+					</g>
+  				</g>
+  
+  				<g id="gsText" mask="url(#textMask)" fill="#333">
+					<text id="line1" text-anchor="middle" x="600" y="640" font-size="60" >Made with GreenSock</text>
+					<text id="line2" text-anchor="middle" x="600" y="680" font-size="40" >TweenMax and the DrawSVG plugin</text> 
+  				</g> 
+			</g> 
+		</svg>
